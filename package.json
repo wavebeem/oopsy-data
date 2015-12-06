@@ -1,0 +1,22 @@
+{
+  "name": "oopsy-data",
+  "version": "0.0.1",
+  "description": "Takes a file and error locations, turning them into line/column data with relevant text",
+  "main": "src/api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wavebeem/oopsy-data.git"
+  },
+  "author": "Brian Mock <brian@mockbrian.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wavebeem/oopsy-data/issues"
+  },
+  "homepage": "https://github.com/wavebeem/oopsy-data#readme",
+  "dependencies": {
+    "chalk": "^1.1.1"
+  }
+}
