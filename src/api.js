@@ -13,6 +13,7 @@ function fromLocations(code, locations, opts) {
         ret.push({
             line: loc.line,
             column: loc.column,
+            data: loc.data,
             context: extract(lines[loc.line - 1], loc.column, opts)
         });
     });
@@ -65,8 +66,12 @@ function toLocations(code, indices) {
     var m = idx.length;
     var ret = [];
     while (i < n && j < m) {
-        if (idx[j] === i) {
-            ret.push({line: line, column: col});
+        if (idx[j].index === i) {
+            ret.push({
+                line: line,
+                column: col,
+                data: idx[j].data
+            });
             j++;
         }
 

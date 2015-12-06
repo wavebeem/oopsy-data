@@ -16,8 +16,11 @@ participating in this project you agree to abide by its terms.
 
 There are two functions, `fromIndices`, and `fromLocations`. Both of them take
 the source code text as a string for the first parameter. The second parameter
-is either a list of string indices (e.g. `[0, 5, 23, 100]`) or a list of
+is either a list of string indices (e.g. `[{index: 0}, {index: 5}`) or a list of
 `{line, column}` objects (e.g. `[{line: 1, column: 3}, {line: 3, column: 89}]`).
+
+If the objects you pass have a property `data`, that will be passed along in the
+return values.
 
 They both accept an optional third parameter which is an options object. The
 only key for the options object is `color`, which can have the values true or
@@ -28,12 +31,17 @@ NOTE: The library considers both LF (Linux/OS X) and CRLF (Windows)
 ## Example: No color, using indices:
 
 ```javascript
+var OopsyData = require("oopsy-data");
 var code =
     "hello world\n" +
     "this is me and cool\n" +
     "nice nice nice\n";
-var indices = [0, 2, 13];
-var data = fromIndices(code, indices);
+var indices = [
+    {index: 0},
+    {index: 2},
+    {index: 13}
+];
+var data = OopsyData.fromIndices(code, indices);
 data.forEach(function(d) {
     console.log("Line:", d.line, "Column:", d.column);
     console.log(d.context);
@@ -43,6 +51,7 @@ data.forEach(function(d) {
 ## Example: Color, using locations:
 
 ```javascript
+var OopsyData = require("oopsy-data");
 var code =
     "hello world\n" +
     "this is me and cool\n" +
@@ -52,7 +61,7 @@ var indices = [
     {line: 2, column: 7},
     {line: 3, column: 10}
 ];
-var data = fromLocations(code, locations, {color: true});
+var data = OopsyData.fromLocations(code, locations, {color: true});
 data.forEach(function(d) {
     console.log("Line:", d.line, "Column:", d.column);
     console.log(d.context);
